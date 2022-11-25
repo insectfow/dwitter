@@ -44,11 +44,10 @@ const Auth = () => {
     let provider;
     if (name === 'google') {
       provider = GoogleProvider;
-    } else {
+    } else if (name === 'github') {
       provider = GithubProvider;
     }
-    const data = await signPopup(provider);
-    console.log(data);
+    await signPopup(provider);
   }
   return (
     <div>
