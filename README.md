@@ -12,6 +12,8 @@
 
 6. firebase auth login add in auth.js
 
-7. firebase auth social login(google, github) add;
+7. firebase auth social login(google, github) add
 
-8. profile page router setting and firebase logout update;
+8. profile page router setting and firebase logout update
+
+9. home page tweets update and firestore setting
