@@ -13,12 +13,15 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 export const authService = getAuth();
+
 export const createUser = async (email, password, errorfunc) => await createUserWithEmailAndPassword(authService, email, password).catch(error => {
   errorfunc( error.message.replace("Firebase: ", ""))
 })
+
 export const signUser = async (email, password, errorfunc) => await signInWithEmailAndPassword(authService, email, password).catch(error => {
   errorfunc( error.message.replace("Firebase: ", ""))
 });
+
 export const authOnchange = (sus, fail, init) => onAuthStateChanged(authService, (user) => {
   if (user) {
     sus();
