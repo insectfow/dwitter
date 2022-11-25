@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createUser, signUser } from '../myBase';
+import { authService, createUser, signUser, GoogleProvider, GithubProvider, signPopup } from '../myBase';
 
 const Auth = () => {
   const [email, setEmail] = useState('');
@@ -37,6 +37,19 @@ const Auth = () => {
     }
   }
   const onToggle = () => setNewAccount((prev) => !prev);
+  const onSocailClick = async (event) => {
+    const {
+      target: { name },
+    } = event;
+    let provider;
+    if (name === 'google') {
+      provider = GoogleProvider;
+    } else {
+      provider = GithubProvider;
+    }
+    const data = await signPopup(provider);
+    console.log(data);
+  }
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -47,8 +60,8 @@ const Auth = () => {
       </form>
       <span onClick={onToggle}>{ newAccount ? 'sign in' : 'create account'}</span>
       <div>
-        <button>Continue with Google</button>
-        <button>Continue with Github</button>
+        <button onClick={onSocailClick} name="google" >Continue with Google</button>
+        <button onClick={onSocailClick} name="github">Continue with Github</button>
       </div>
     </div>
   )

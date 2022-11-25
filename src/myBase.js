@@ -1,5 +1,5 @@
 import * as firebase from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -30,3 +30,8 @@ export const authOnchange = (sus, fail, init) => onAuthStateChanged(authService,
   }
   init();
 });
+
+
+export const GoogleProvider = new GoogleAuthProvider();
+export const GithubProvider = new GithubAuthProvider();
+export const signPopup = (provider) => signInWithPopup(authService, provider);
