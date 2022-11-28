@@ -24,7 +24,7 @@ export const signUser = async (email, password, errorfunc) => await signInWithEm
 
 export const authOnchange = (sus, fail, init) => onAuthStateChanged(authService, (user) => {
   if (user) {
-    sus();
+    sus(user);
   } else {
     fail();
   }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { authService, createUser, signUser, GoogleProvider, GithubProvider, signPopup } from '../myBase';
-
+import "../assets/scss/auth.scss";
 const Auth = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -50,17 +50,20 @@ const Auth = () => {
     await signPopup(provider);
   }
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input name='email' type='text' placeholder="Email" required alue={email} onChange={onChanges}></input>
-        <input name='password' type='password' placeholder="Password" required value={password} onChange={onChanges} ></input>
-        <input type="submit" value={newAccount ? 'Create Acoount' : 'Log In'}></input>
-        {error}
-      </form>
-      <span onClick={onToggle}>{ newAccount ? 'sign in' : 'create account'}</span>
-      <div>
-        <button onClick={onSocailClick} name="google" >Continue with Google</button>
-        <button onClick={onSocailClick} name="github">Continue with Github</button>
+    <div className='auth-page'>
+      <div className='container'>
+        
+        <form onSubmit={onSubmit}>
+          <input name='email' type='text' placeholder="이메일" required alue={email} onChange={onChanges}></input>
+          <input name='password' type='password' placeholder="비밀번호" required value={password} onChange={onChanges} ></input>
+          <input type="submit" value={newAccount ? 'Create Acoount' : 'Log In'}></input>
+          { error ? <span className='error-msg'>{ error }</span> : null }
+        </form>
+        <span className='toggle-btn' onClick={onToggle}>{ newAccount ? 'Sign In' : 'Create Account'}</span>
+        <div>
+          <button onClick={onSocailClick} name="google" >Continue with Google</button>
+          <button onClick={onSocailClick} name="github">Continue with Github</button>
+        </div>
       </div>
     </div>
   )

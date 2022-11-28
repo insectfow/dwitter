@@ -4,13 +4,15 @@ import { authService, authOnchange } from '../myBase';
 
 function App() {
   const [init, setInit] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userObj, setUserObj] = useState(null);
   useEffect(() => {
-    const sns = () => {
+    const sns = (user) => {
       setIsLoggedIn(true);
+      setUserObj(user);
     }
     const fail = () => {
-      setIsLoggedIn(false)
+      setIsLoggedIn(false);
     }
     const init = () => {
       setInit(true);
@@ -19,7 +21,7 @@ function App() {
   }, [])
   return (
     <>
-      {init ? <AppRouter isLoggedIn={isLoggedIn} /> : 'Initializing...' }
+      {init ? <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} /> : 'Initializing...' }
       
       <footer>&copy: Dwitter { new Date().getFullYear() }</footer>
     </>
