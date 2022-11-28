@@ -17,3 +17,5 @@
 8. profile page router setting and firebase logout update
 
 9. home page tweets update and firestore setting
+
+10. node15 => node-sass@5 install plz

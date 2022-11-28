@@ -1,0 +1,11 @@
+@import url("./font.scss");
+
+html, body {
+  font-family: 'NotoSans-Regular';
+  color: #000;
+}
+
+html, body, ul, li, ol, p, h1, h2, h3, h4, h5, h6, span, button, input, select, div, a {
+  margin: 0;
+  padding: 0;
+}
