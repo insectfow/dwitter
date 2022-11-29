@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { authService, createUser, signUser, GoogleProvider, GithubProvider, signPopup } from '../myBase';
+import { createUser, signUser, GoogleProvider, GithubProvider, signPopup } from '../myBase';
 import "../assets/scss/auth.scss";
 const Auth = () => {
   const [email, setEmail] = useState('');
@@ -21,16 +21,15 @@ const Auth = () => {
     const errorFunc = (error) => {
       setError(error);
     }
-    let data;
     if (newAccount) {
       // create
-      data = createUser(
+      createUser(
         email,
         password, errorFunc
       )
     } else {
       // log in
-      data = signUser(
+      signUser(
         email,
         password, errorFunc
       )

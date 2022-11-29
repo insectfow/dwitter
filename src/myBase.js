@@ -1,6 +1,7 @@
 import * as firebase from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from 'firebase/auth';
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -37,3 +38,5 @@ export const GithubProvider = new GithubAuthProvider();
 export const signPopup = (provider) => signInWithPopup(authService, provider);
 
 export const dbService = getFirestore();
+
+export const storageService = getStorage(); 

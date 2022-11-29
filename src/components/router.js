@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Auth from '../routes/Auth'
+import Auth from '../routes/Auth';
 import Home from '../routes/Home';
-import Profile from '../routes/Profile'
+import Profile from '../routes/Profile';
+import Pachinko from '../routes/Pachinko';
 import Navigation from './Navigation';
 
 const AppRouter = ({isLoggedIn, userObj}) => {
@@ -14,6 +15,8 @@ const AppRouter = ({isLoggedIn, userObj}) => {
             <Route path="/"  element={<Home userObj={userObj}  />}>
             </Route>
             <Route path="/profile" element={<Profile/>}>
+            </Route>
+            <Route path="/pachinko" element={<Pachinko/>}>
             </Route>
             {/* <Redirect from="*" to="/" /> */}
           </>
