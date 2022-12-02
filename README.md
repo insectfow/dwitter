@@ -10,6 +10,7 @@
 
 [v] - 트윗 파일 업로드, 파일 삭제 기능
 
+[v] - 프로필 수정 기능
 
 # 프로젝트 진행 플로우
 
@@ -38,3 +39,5 @@
 12. dweet file upload firebase storage update
 
 13. dweet file delete update
+
+14. profile onChange

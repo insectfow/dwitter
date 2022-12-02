@@ -5,16 +5,16 @@ import Profile from '../routes/Profile';
 import Pachinko from '../routes/Pachinko';
 import Navigation from './Navigation';
 
-const AppRouter = ({isLoggedIn, userObj}) => {
+const AppRouter = ({refreshUser, isLoggedIn, userObj}) => {
   return (
     <Router>
-      {isLoggedIn && <Navigation />}
+      {isLoggedIn && <Navigation userObj={userObj} />}
       <Routes>
         {isLoggedIn ? (
           <>
             <Route path="/"  element={<Home userObj={userObj}  />}>
             </Route>
-            <Route path="/profile" element={<Profile/>}>
+            <Route path="/profile" element={<Profile refreshUser={refreshUser} userObj={userObj}/>}>
             </Route>
             <Route path="/pachinko" element={<Pachinko/>}>
             </Route>
