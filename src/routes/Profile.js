@@ -10,6 +10,7 @@ const Profile = ({ refreshUser, userObj }) => {
   const onLogOutClick = () => {
     authService.signOut();
     navigation("/");
+    refreshUser();
   };
 
   const getMyDweets = async () => {
@@ -34,9 +35,10 @@ const Profile = ({ refreshUser, userObj }) => {
     setNewDisplayName(value);
   }
 
-  useEffect(() => {
+  useEffect( () => {
     getMyDweets();
-  }, [])
+  }, []);
+
   return (
     <>
       <form onSubmit={onSubmit}>

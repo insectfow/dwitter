@@ -18,6 +18,7 @@ function App() {
     }
     const fail = () => {
       setIsLoggedIn(false);
+      setUserObj(null);
     }
     const init = () => {
       setInit(true);
