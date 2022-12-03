@@ -31,7 +31,6 @@ const Dweet = ({ dweetObj, isOwner }) => {
   };
   const onSubmit = async (event) => {
     event.preventDefault();
-
     if (newDweet === '') {
       return window.alert('입력하세요')
     }

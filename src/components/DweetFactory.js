@@ -41,6 +41,8 @@ const DweetFactory = ({ userObj }) => {
     const {
       target : { value }
     } = event;
+    console.log(event);
+
     setDweet(value);
   }
   const onFileChange = (event) => {
@@ -52,6 +54,7 @@ const DweetFactory = ({ userObj }) => {
       setAttachment(result)
     }
     reader.readAsDataURL(theFile);
+    event.target.value = "";
   }
   const clearAttachmentClick = () => setAttachment("");
 
