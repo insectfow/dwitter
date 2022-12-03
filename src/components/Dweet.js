@@ -2,12 +2,15 @@ import React, { useState } from 'react';
 import { dbService, storageService } from '../myBase'
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { deleteObject, ref } from "firebase/storage";
+import ReactIcon from '../assets/icons/ellipsis-solid.svg';
+import "../assets/scss/dweet.scss";
 
 const Dweet = ({ dweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
   const [newDweet, setNewDweet] = useState(dweetObj.text);
+  const [isFix, setIsFix] = useState(false);
   const DweetRef = doc(dbService, "dweets", `${dweetObj.id}`);
-  const storageRef = ref(storageService, dweetObj.attachmentUrl)
+  const storageRef = ref(storageService, dweetObj.attachmentUrl);
   const onDeleteClick = async () => {
     const ok = window.confirm("delete this dweets?");
     if (ok) {
@@ -39,23 +42,34 @@ const Dweet = ({ dweetObj, isOwner }) => {
     await toggleEditting();
   }
 
+  const toggleFix = () => {
+    setIsFix(prev => !prev);
+  }
+
   return (
-    <div >
+    <div className='dweet-wrap'>
       {editing ? <form onSubmit={onSubmit}>
         <input type="text" value={newDweet} onChange={onChange} required />
         <input type="submit" value="update dweet" />
         <button onClick={toggleEditting}>cencle</button>
       </form>
-      
-        : <>
-          <h4>{dweetObj.text} {isOwner}</h4>
-          <img src={dweetObj.attachmentUrl} alt="photos" />
-          {isOwner && (
-          <>
-            <button onClick={onDeleteClick}>Delete Dweet</button>
-            <button onClick={toggleEditting}>Edit Dweet</button>
-          </>
-        )}</>}
+        : <div className='dweet-box'>
+            <h4>
+            {dweetObj.text} {isOwner}
+            <figure className='fix-icon' onClick={toggleFix}>
+              <img src={ReactIcon} alt="fix icon" />
+            </figure>
+          </h4>
+          
+            <figure>
+              <img src={dweetObj.attachmentUrl} alt="photos" />
+            </figure>
+            {isOwner && isFix && (
+            <div className='dweet-button-box'>
+              <button className='red' onClick={onDeleteClick}>Delete Dweet</button>
+              <button className='on' onClick={toggleEditting}>Edit Dweet</button>
+            </div>
+        )}</div>}
       
     </div>
   )

@@ -16,12 +16,14 @@ const Home = ({userObj}) => {
     });
   }, []);
   return (
-    <div>
-      <DweetFactory userObj={userObj} />
-      <div>
-        {dweets.map((dweet) => (
-          <Dweet key={dweet.id} dweetObj={dweet} isOwner={ dweet.creator === userObj.uid} /> 
-        ))}
+    <div className='page'>
+      <div className='container'>
+        <DweetFactory userObj={userObj} />
+        <div>
+          {dweets.map((dweet) => (
+            <Dweet key={dweet.id} dweetObj={dweet} isOwner={ dweet.creator === userObj.uid} /> 
+          ))}
+        </div>
       </div>
     </div>
   )
