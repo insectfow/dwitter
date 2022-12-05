@@ -37,16 +37,21 @@ const Profile = ({ refreshUser, userObj }) => {
 
   useEffect( () => {
     getMyDweets();
-  }, []);
+  });
 
   return (
-    <>
-      <form onSubmit={onSubmit}>
-        <input type="text" placeholder='Display name' value={newDisplayName} onChange={onChange} />
-        <input type="submit" value="Update Profile" />
-      </form>
-      <button onClick={onLogOutClick}>log out</button>
-    </>
+    <div className='page'>
+      <div className='container'>
+        <form onSubmit={onSubmit}>
+          <label>
+            닉네임
+          </label>
+          <input className='profile-input' type="text" placeholder='Display name' value={newDisplayName} onChange={onChange} />
+          <input type="submit" value="Update Profile" />
+        </form>
+      <button className='red' onClick={onLogOutClick}>log out</button>
+      </div>
+    </div>
   )
 }
 

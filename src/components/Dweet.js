@@ -47,28 +47,32 @@ const Dweet = ({ dweetObj, isOwner }) => {
 
   return (
     <div className='dweet-wrap'>
-      {editing ? <form onSubmit={onSubmit}>
+      {editing ? <form className='fix-dweet-form' onSubmit={onSubmit}>
+        <label>
+          Dweet Title
+        </label>
         <input type="text" value={newDweet} onChange={onChange} required />
-        <input type="submit" value="update dweet" />
-        <button onClick={toggleEditting}>cencle</button>
+        <input type="submit" value="Update" />
+        <button onClick={toggleEditting}>Cencle</button>
       </form>
         : <div className='dweet-box'>
             <h4>
-            {dweetObj.text} {isOwner}
-            <figure className='fix-icon' onClick={toggleFix}>
+            {dweetObj.text} {isOwner && ( <figure className='fix-icon' onClick={toggleFix}>
               <img src={ReactIcon} alt="fix icon" />
-            </figure>
+            </figure>)}
+            
           </h4>
-          
-            <figure>
-              <img src={dweetObj.attachmentUrl} alt="photos" />
-            </figure>
-            {isOwner && isFix && (
+            {isFix && (
             <div className='dweet-button-box'>
-              <button className='red' onClick={onDeleteClick}>Delete Dweet</button>
-              <button className='on' onClick={toggleEditting}>Edit Dweet</button>
+              <button className='red' onClick={onDeleteClick}>Delete</button>
+              <button className='on' onClick={toggleEditting}>Edit</button>
             </div>
-        )}</div>}
+          )}
+            {dweetObj.attachmentUrl && (<figure>
+              <img src={dweetObj.attachmentUrl} alt="photos" />
+            </figure>)}
+            
+        </div>}
       
     </div>
   )

@@ -38,6 +38,11 @@ figure {
   }
 }
 
+label {
+  margin-bottom: 3px;
+  display: inline-block;
+}
+
 input, button {
   width: 100%;
   border: 1px solid $mainColor;
@@ -63,7 +68,7 @@ input[type='submit'], button {
     width: 120px;
   }
 }
-
+// Dweet.js
 .dweet-wrap {
   box-sizing: border-box;
   @include box(1px);
@@ -71,30 +76,101 @@ input[type='submit'], button {
   .dweet-box {
     h4 {
       padding: 5px 10px;
-      border-bottom: 1px solid #000;
       display: flex;
       justify-content: space-between;
+      gap: 3px;
     }
     .fix-icon {
       min-width: 24px;
       width: 24px;
+      height: 24px;
     }
   }
   .dweet-button-box {
     display: flex;
+    z-index: 10;
     > button {
       border-radius: 0;
       border: none;
     }
-    > .on {
-      background: $mainColor;
-      color: #fff;
-    }
-    > .red {
-      background: $redColor;
-      color: #fff;
-    }
+    
   }
+}
+
+.on {
+  background: $mainColor;
+  color: #fff;
+}
+
+.red {
+  background: $redColor;
+  color: #fff;
+}
+
+
+.fix-dweet-form {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  padding: 5px;
+  > input[type='text'] {
+    height: 40px;
+  }
+  > input[type='submit'], button {
+    width: calc(50% - 2.5px);
+  }
+  > button {
+    margin-left: 5px;
+  }
+  
+}
+
+.dweet-input:focus {
+  outline: none;
+}
+
+// DweetFactory.js
+.dweet-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.img-upload-button {
+  width: 100%;
+  padding: 0;
+  padding: 10px;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  > img {
+    width:24px;
+  }
+}
+
+.dweet-input {
+  padding: 10px 10px;
+  margin-bottom: 0;
+}
+.dweet-file-input {
+  display: none;
+}
+
+.dweet-uploaded-box {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  > img {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+}
+
+// profile.js
+.profile-input {
+  height: 36px;
 }
 
 .nav-container {
@@ -108,7 +184,7 @@ input[type='submit'], button {
   box-sizing: border-box;
   > li {
     > a {
-      padding: 10px;
+      padding: 10px 0;
       display: flex;
     }
   }

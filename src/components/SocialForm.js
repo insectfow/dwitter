@@ -5,6 +5,7 @@ import GoogleIcon from '../assets/icons/google.svg';
 import GitHubIcon from '../assets/icons/github.svg';
 
 const SocialForm = () => {
+  
   const onSocailClick = async (event) => {
     let provider;
     const {
