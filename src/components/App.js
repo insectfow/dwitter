@@ -13,8 +13,11 @@ function App() {
       setUserObj({
         displayName: user.displayName,
         uid: user.uid,
-        updateProfile: (args) => updateProfile(user, {displayName: user.displayName})
+        photoURL: user.photoURL,
+        updateProfile: (args) => updateProfile(user, {displayName: user.displayName, photoURL: user.photoURL})
       });
+
+      console.log(user);
     }
     const fail = () => {
       setIsLoggedIn(false);
@@ -31,7 +34,8 @@ function App() {
     setUserObj({
       displayName: user.displayName,
       uid: user.uid,
-      updateProfile: (args) => updateProfile(user, {displayName: user.displayName})
+      photoURL: user.photoURL,
+      updateProfile: (args) => updateProfile(user, {displayName: user.displayName, photoURL: user.photoURL})
     });
   }
   return (

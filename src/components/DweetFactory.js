@@ -20,35 +20,31 @@ const DweetFactory = ({ userObj }) => {
     }
 
     try {
-      console.log(attachment);
-
+      let dweetObj;
       if (attachment !== '') {
         const attachmentRef = ref(storageService, `${userObj.uid}/${v4()}`);
         const response = await uploadString(attachmentRef, attachment, "data_url");
-        const attachmentUrl = response ? await getDownloadURL(response.ref) : null;
-        const dweetObj = {
+        const attachmentUrl = await getDownloadURL(response.ref);
+        dweetObj = {
           text: dweet,
           createdAt: Date.now(),
           creator: userObj.uid,
           attachmentUrl
         }
-
-        await addDoc(collection(dbService, 'dweets'), dweetObj);
       } else {
-        const dweetObj = {
+        dweetObj = {
           text: dweet,
           createdAt: Date.now(),
-          creator: userObj.uid
+          creator: userObj.uid,
         }
-
-        await addDoc(collection(dbService, 'dweets'), dweetObj);
       }
-
-      
+      await addDoc(collection(dbService, 'dweets'), dweetObj);
       setError(null);
+
     } catch (error) {
       setError(error.message);
     }
+    
     setDweet("");
     clearAttachmentClick();
   }
@@ -71,9 +67,6 @@ const DweetFactory = ({ userObj }) => {
 
     try {
       const compressedFile = await imageCompression(file, options);
-
-      console.log(compressedFile);
-      
       // resize된 이미지의 url을 받아 fileUrl에 저장
       const promise = imageCompression.getDataUrlFromFile(compressedFile);
       promise.then(result => {

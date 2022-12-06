@@ -4,7 +4,8 @@ $mainColor: #000000;
 $redColor: red;
 
 @mixin box( $borderWidth ) {
-  border: $borderWidth solid $mainColor;
+  // border: $borderWidth solid $mainColor;
+  box-shadow: 0 0 10px rgba(0,0,0,.2);
   border-radius: 4px;
   margin-bottom: 20px;
   overflow: hidden;
@@ -79,6 +80,7 @@ input[type='submit'], button {
       display: flex;
       justify-content: space-between;
       gap: 3px;
+      border-bottom: 1px solid #dfdfdf;
     }
     .fix-icon {
       min-width: 24px;
@@ -95,6 +97,10 @@ input[type='submit'], button {
     }
     
   }
+}
+
+.noline {
+  border-bottom: none !important;
 }
 
 .on {
@@ -162,15 +168,57 @@ input[type='submit'], button {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  > img {
-    width: 100%;
-    margin-bottom: 5px;
-  }
+  
 }
 
 // profile.js
 .profile-input {
   height: 36px;
+}
+
+.profile-image-fix-box {
+  margin: 20px auto 10px;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 5px;
+  > input {
+    display: none;
+  }
+  .image-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    > figure {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      box-shadow: 3px 5px 10px rgba(0,0,0,.4);
+      overflow: hidden;
+
+      > img {
+        width: 100%;
+        object-fit: cover;
+        
+      }
+    }
+    > button {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: 0;
+      right: 0; 
+      border: none;
+      box-shadow: 0 0 5px rgba(0,0,0,.4);
+      border-radius: 50%;
+      padding: 7px;
+    }
+  }
+}
+nav {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 100;
 }
 
 .nav-container {

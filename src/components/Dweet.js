@@ -11,6 +11,7 @@ const Dweet = ({ dweetObj, isOwner }) => {
   const [isFix, setIsFix] = useState(false);
   const DweetRef = doc(dbService, "dweets", `${dweetObj.id}`);
   const storageRef = ref(storageService, dweetObj.attachmentUrl);
+  
   const onDeleteClick = async () => {
     const ok = window.confirm("delete this dweets?");
     if (ok) {
@@ -18,6 +19,7 @@ const Dweet = ({ dweetObj, isOwner }) => {
       await deleteObject(storageRef);
     }
   }
+  
   const toggleEditting = () => {
     setEditing((prev) => !prev);
   }
@@ -56,7 +58,7 @@ const Dweet = ({ dweetObj, isOwner }) => {
         <button onClick={toggleEditting}>Cencle</button>
       </form>
         : <div className='dweet-box'>
-            <h4>
+            <h4 className={dweetObj.attachmentUrl ? '' : 'noline'}>
             {dweetObj.text} {isOwner && ( <figure className='fix-icon' onClick={toggleFix}>
               <img src={ReactIcon} alt="fix icon" />
             </figure>)}
